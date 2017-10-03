@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,7 +77,11 @@ public class MainActivity extends AppCompatActivity {
             String strJSON = mySynChronize.get();
             Log.d(tag2, "JSON ==> " + strJSON);
 
-
+            JSONArray jsonArray = new JSONArray(strJSON);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            String strNumber = jsonObject.getString("MyNumber");
+            TextView textView = (TextView) findViewById(R.id.txtShowText);
+            textView.setText(strNumber);
 
         } catch (Exception e) {
             Log.d(tag2, "e myLoop ==>" + e.toString());
